@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+enum GpioState {
+    Off = 0;
+    On = 1;
+}
+
+message SetGpioRequest {
+    uint32 GpioNumber = 1;
+    GpioState State = 2;
+}
+
+message GetGpioRequest {
+    uint32 GpioNumber = 1;
+}
+
+message GetGpioResponse {
+    uint32 GpioNumber = 1;
+    GpioState State = 2;
+}
+
+message SetGpioResponse {
+}
+
+service Gpio {
+    rpc GetGpio (GetGpioRequest) returns (GetGpioResponse) {}
+    rpc SetGpio (SetGpioRequest) returns (SetGpioResponse) {}
+}
