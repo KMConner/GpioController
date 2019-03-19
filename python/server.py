@@ -1,14 +1,25 @@
-from gpioService import GpioService
-import grpc
-from concurrent import futures
-import gpio_pb2_grpc
+import sys
 import time
+from concurrent import futures
+
+import grpc
+
+import config
+import gpio_pb2_grpc
+from config import Config
+from gpioService import GpioService
 
 
 def main():
+    conf: Config
+    try:
+        conf = config.load_config('conf.json')
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     gpio_pb2_grpc.add_GpioServicer_to_server(GpioService(), server)
-    server.add_insecure_port('[::]:8081')
+    server.add_insecure_port(conf.address)
     server.start()
     try:
         while True:
