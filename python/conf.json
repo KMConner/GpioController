@@ -1,0 +1,5 @@
+{
+    "debug": false,
+    "gpio_out": [],
+    "address": "[::]:8081"
+}
