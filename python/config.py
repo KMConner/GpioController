@@ -32,6 +32,9 @@ class Config:
     def debug(self, d: bool):
         self.__debug = d
 
+    def __str__(self) -> str:
+        return 'Server configuration:\nAddress: %s\nGPIO out: %s\nDebug: %s' % (self.address, self.gpio_out, self.debug)
+
 
 def load_config(path: str) -> Config:
     conf: dict
