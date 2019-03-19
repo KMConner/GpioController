@@ -37,7 +37,7 @@ def main():
 
     # Start server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    gpio_pb2_grpc.add_GpioServicer_to_server(GpioService(), server)
+    gpio_pb2_grpc.add_GpioServicer_to_server(GpioService(conf), server)
     server.add_insecure_port(conf.address)
     server.start()
     logging.info('Server started.')
