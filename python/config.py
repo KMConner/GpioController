@@ -5,7 +5,7 @@ from typing import List
 class Config:
     def __init__(self):
         self.__address: str
-        self.__gpio_in: List[int]
+        self.__gpio_out: List[int]
         self.__debug: bool = False
 
     @property
@@ -18,11 +18,11 @@ class Config:
 
     @property
     def gpio_out(self) -> List[int]:
-        return self.__gpio_in
+        return self.__gpio_out
 
     @gpio_out.setter
     def gpio_out(self, gpio: List[int]):
-        self.__gpio_in = gpio
+        self.__gpio_out = gpio
 
     @property
     def debug(self) -> bool:
