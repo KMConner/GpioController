@@ -44,7 +44,7 @@ def main():
         print(USAGE_STR)
         return
 
-    with grpc.insecure_channel('127.0.0.1:54321') as channel:
+    with grpc.insecure_channel('127.0.0.1:8081') as channel:
         stub = GpioStub(channel)
         if command_name == 'get':
             resp = stub.GetGpio(GetGpioRequest(GpioNumber=gpio_number))
