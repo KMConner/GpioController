@@ -1,3 +1,4 @@
+import json
 from typing import List
 
 
@@ -16,11 +17,11 @@ class Config:
         self.__address = addr
 
     @property
-    def gpio_in(self) -> List[int]:
+    def gpio_out(self) -> List[int]:
         return self.__gpio_in
 
-    @gpio_in.setter
-    def gpio_in(self, gpio: List[int]):
+    @gpio_out.setter
+    def gpio_out(self, gpio: List[int]):
         self.__gpio_in = gpio
 
     @property
@@ -33,4 +34,11 @@ class Config:
 
 
 def load_config(path: str) -> Config:
-    pass
+    conf: dict
+    with open(path, 'r') as config_file:
+        conf = json.load(config_file)
+    ret: Config = Config()
+    ret.address = conf['address']
+    ret.debug = conf['debug']
+    ret.gpio_out = conf['gpio_out']
+    return ret
