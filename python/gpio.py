@@ -3,6 +3,7 @@ from typing import Dict, List
 from gpiozero import LED
 
 from gpio_stub import GpioStub
+from time import sleep
 
 
 class Gpio(GpioStub):
@@ -20,6 +21,12 @@ class Gpio(GpioStub):
     def get_gpio(self, gpio_number: int) -> bool:
         self._check_number(gpio_number)
         return False if self.led[gpio_number] == 0 else True
+
+    def blink_gpio(self, gpio_number: int, length: float):
+        self._check_number(gpio_number)
+        self.led[gpio_number].toggle()
+        sleep(length)
+        self.led[gpio_number].toggle()
 
     def _check_number(self, num: int):
         if num not in self.led:

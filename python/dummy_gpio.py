@@ -1,5 +1,7 @@
-from gpio_stub import GpioStub
+from time import sleep
 from typing import Dict, List
+
+from gpio_stub import GpioStub
 
 
 class DummyGpio(GpioStub):
@@ -18,3 +20,6 @@ class DummyGpio(GpioStub):
         if gpio_number not in self.pins:
             raise ValueError('gpio_number is invalid!')
         return self.pins[gpio_number]
+
+    def blink_gpio(self, gpio_number: int, length: float):
+        sleep(length)

@@ -10,3 +10,6 @@ class GpioStub:
 
     def get_gpio(self, gpio_number: int) -> bool:
         raise NotImplementedError()
+
+    def blink_gpio(self, gpio_number: int, length: float):
+        raise NotImplementedError()
