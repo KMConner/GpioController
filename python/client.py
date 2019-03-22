@@ -1,7 +1,7 @@
 from gpio_pb2_grpc import GpioStub
 import grpc
 import gpio_pb2
-from gpio_pb2 import GetGpioRequest, GetGpioResponse, GpioState, SetGpioRequest
+from gpio_pb2 import GetGpioRequest, GetGpioResponse, GpioState, SetGpioRequest, BlinkGpioRequest
 import sys
 
 USAGE_STR = """
@@ -40,6 +40,10 @@ def main():
         if arg_length != 3:
             print(USAGE_STR)
             return
+    elif command_name == 'blink':
+        if arg_length != 4:
+            print(USAGE_STR)
+            return
     else:
         print(USAGE_STR)
         return
@@ -54,6 +58,9 @@ def main():
                                                State=gpio_pb2.On
                                                if sys.argv[3] == 'On'
                                                else gpio_pb2.Off))
+            print("Success!")
+        elif command_name == 'blink':
+            stub.BlinkGpio(BlinkGpioRequest(GpioNumber=gpio_number, Length=float(sys.argv[3])))
             print("Success!")
 
 
