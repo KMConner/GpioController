@@ -24,6 +24,11 @@ class GpioStub(object):
         request_serializer=gpio__pb2.SetGpioRequest.SerializeToString,
         response_deserializer=gpio__pb2.SetGpioResponse.FromString,
         )
+    self.BlinkGpio = channel.unary_unary(
+        '/Gpio/BlinkGpio',
+        request_serializer=gpio__pb2.BlinkGpioRequest.SerializeToString,
+        response_deserializer=gpio__pb2.BlinkGpioResponse.FromString,
+        )
 
 
 class GpioServicer(object):
@@ -44,6 +49,13 @@ class GpioServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def BlinkGpio(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_GpioServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -56,6 +68,11 @@ def add_GpioServicer_to_server(servicer, server):
           servicer.SetGpio,
           request_deserializer=gpio__pb2.SetGpioRequest.FromString,
           response_serializer=gpio__pb2.SetGpioResponse.SerializeToString,
+      ),
+      'BlinkGpio': grpc.unary_unary_rpc_method_handler(
+          servicer.BlinkGpio,
+          request_deserializer=gpio__pb2.BlinkGpioRequest.FromString,
+          response_serializer=gpio__pb2.BlinkGpioResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

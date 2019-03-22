@@ -1,3 +1,6 @@
+// Build command:
+// python -m grpc_tools.protoc -I ../ --python_out=./ --grpc_python_out=./ ../gpio.proto
+
 syntax = "proto3";
 
 enum GpioState {
@@ -22,7 +25,18 @@ message GetGpioResponse {
 message SetGpioResponse {
 }
 
+message BlinkGpioRequest {
+    uint32 GpioNumber = 1;
+    double Length = 2;
+}
+
+message BlinkGpioResponse {
+    uint32 GpioNumber = 1;
+    double Length = 2;
+}
+
 service Gpio {
     rpc GetGpio (GetGpioRequest) returns (GetGpioResponse) {}
     rpc SetGpio (SetGpioRequest) returns (SetGpioResponse) {}
+    rpc BlinkGpio (BlinkGpioRequest) returns (BlinkGpioResponse) {}
 }

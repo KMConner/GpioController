@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\ngpio.proto\"?\n\x0eSetGpioRequest\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x19\n\x05State\x18\x02 \x01(\x0e\x32\n.GpioState\"$\n\x0eGetGpioRequest\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\"@\n\x0fGetGpioResponse\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x19\n\x05State\x18\x02 \x01(\x0e\x32\n.GpioState\"\x11\n\x0fSetGpioResponse*\x1c\n\tGpioState\x12\x07\n\x03Off\x10\x00\x12\x06\n\x02On\x10\x01\x32\x66\n\x04Gpio\x12.\n\x07GetGpio\x12\x0f.GetGpioRequest\x1a\x10.GetGpioResponse\"\x00\x12.\n\x07SetGpio\x12\x0f.SetGpioRequest\x1a\x10.SetGpioResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\ngpio.proto\"?\n\x0eSetGpioRequest\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x19\n\x05State\x18\x02 \x01(\x0e\x32\n.GpioState\"$\n\x0eGetGpioRequest\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\"@\n\x0fGetGpioResponse\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x19\n\x05State\x18\x02 \x01(\x0e\x32\n.GpioState\"\x11\n\x0fSetGpioResponse\"6\n\x10\x42linkGpioRequest\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x0e\n\x06Length\x18\x02 \x01(\x01\"7\n\x11\x42linkGpioResponse\x12\x12\n\nGpioNumber\x18\x01 \x01(\r\x12\x0e\n\x06Length\x18\x02 \x01(\x01*\x1c\n\tGpioState\x12\x07\n\x03Off\x10\x00\x12\x06\n\x02On\x10\x01\x32\x9c\x01\n\x04Gpio\x12.\n\x07GetGpio\x12\x0f.GetGpioRequest\x1a\x10.GetGpioResponse\"\x00\x12.\n\x07SetGpio\x12\x0f.SetGpioRequest\x1a\x10.SetGpioResponse\"\x00\x12\x34\n\tBlinkGpio\x12\x11.BlinkGpioRequest\x1a\x12.BlinkGpioResponse\"\x00\x62\x06proto3')
 )
 
 _GPIOSTATE = _descriptor.EnumDescriptor(
@@ -40,8 +40,8 @@ _GPIOSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=202,
-  serialized_end=230,
+  serialized_start=315,
+  serialized_end=343,
 )
 _sym_db.RegisterEnumDescriptor(_GPIOSTATE)
 
@@ -181,12 +181,90 @@ _SETGPIORESPONSE = _descriptor.Descriptor(
   serialized_end=200,
 )
 
+
+_BLINKGPIOREQUEST = _descriptor.Descriptor(
+  name='BlinkGpioRequest',
+  full_name='BlinkGpioRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='GpioNumber', full_name='BlinkGpioRequest.GpioNumber', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='Length', full_name='BlinkGpioRequest.Length', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=202,
+  serialized_end=256,
+)
+
+
+_BLINKGPIORESPONSE = _descriptor.Descriptor(
+  name='BlinkGpioResponse',
+  full_name='BlinkGpioResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='GpioNumber', full_name='BlinkGpioResponse.GpioNumber', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='Length', full_name='BlinkGpioResponse.Length', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=258,
+  serialized_end=313,
+)
+
 _SETGPIOREQUEST.fields_by_name['State'].enum_type = _GPIOSTATE
 _GETGPIORESPONSE.fields_by_name['State'].enum_type = _GPIOSTATE
 DESCRIPTOR.message_types_by_name['SetGpioRequest'] = _SETGPIOREQUEST
 DESCRIPTOR.message_types_by_name['GetGpioRequest'] = _GETGPIOREQUEST
 DESCRIPTOR.message_types_by_name['GetGpioResponse'] = _GETGPIORESPONSE
 DESCRIPTOR.message_types_by_name['SetGpioResponse'] = _SETGPIORESPONSE
+DESCRIPTOR.message_types_by_name['BlinkGpioRequest'] = _BLINKGPIOREQUEST
+DESCRIPTOR.message_types_by_name['BlinkGpioResponse'] = _BLINKGPIORESPONSE
 DESCRIPTOR.enum_types_by_name['GpioState'] = _GPIOSTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -218,6 +296,20 @@ SetGpioResponse = _reflection.GeneratedProtocolMessageType('SetGpioResponse', (_
   ))
 _sym_db.RegisterMessage(SetGpioResponse)
 
+BlinkGpioRequest = _reflection.GeneratedProtocolMessageType('BlinkGpioRequest', (_message.Message,), dict(
+  DESCRIPTOR = _BLINKGPIOREQUEST,
+  __module__ = 'gpio_pb2'
+  # @@protoc_insertion_point(class_scope:BlinkGpioRequest)
+  ))
+_sym_db.RegisterMessage(BlinkGpioRequest)
+
+BlinkGpioResponse = _reflection.GeneratedProtocolMessageType('BlinkGpioResponse', (_message.Message,), dict(
+  DESCRIPTOR = _BLINKGPIORESPONSE,
+  __module__ = 'gpio_pb2'
+  # @@protoc_insertion_point(class_scope:BlinkGpioResponse)
+  ))
+_sym_db.RegisterMessage(BlinkGpioResponse)
+
 
 
 _GPIO = _descriptor.ServiceDescriptor(
@@ -226,8 +318,8 @@ _GPIO = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=232,
-  serialized_end=334,
+  serialized_start=346,
+  serialized_end=502,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetGpio',
@@ -245,6 +337,15 @@ _GPIO = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_SETGPIOREQUEST,
     output_type=_SETGPIORESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='BlinkGpio',
+    full_name='Gpio.BlinkGpio',
+    index=2,
+    containing_service=None,
+    input_type=_BLINKGPIOREQUEST,
+    output_type=_BLINKGPIORESPONSE,
     serialized_options=None,
   ),
 ])
