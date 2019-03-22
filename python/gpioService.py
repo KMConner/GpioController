@@ -1,9 +1,10 @@
 import logging
+
 import gpio_pb2
-from gpio_pb2 import (GetGpioResponse, GpioState, SetGpioResponse)
+from config import Config
+from gpio_pb2 import (GetGpioResponse, BlinkGpioResponse, SetGpioResponse)
 from gpio_pb2_grpc import GpioServicer
 from gpio_stub import GpioStub
-from config import Config
 
 
 class GpioService(GpioServicer):
@@ -27,3 +28,7 @@ class GpioService(GpioServicer):
         print(request)
         self.gpio.set_gpio(request.GpioNumber, request.State == gpio_pb2.On)
         return SetGpioResponse()
+
+    def BlinkGpio(self, request, context):
+        self.gpio.blink_gpio(request.GpioNumber, request.Length)
+        return BlinkGpioResponse()
