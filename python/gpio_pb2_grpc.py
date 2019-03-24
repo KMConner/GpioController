@@ -15,17 +15,17 @@ class GpioStub(object):
       channel: A grpc.Channel.
     """
     self.GetGpio = channel.unary_unary(
-        '/Gpio/GetGpio',
+        '/GpioController.Gpio/GetGpio',
         request_serializer=gpio__pb2.GetGpioRequest.SerializeToString,
         response_deserializer=gpio__pb2.GetGpioResponse.FromString,
         )
     self.SetGpio = channel.unary_unary(
-        '/Gpio/SetGpio',
+        '/GpioController.Gpio/SetGpio',
         request_serializer=gpio__pb2.SetGpioRequest.SerializeToString,
         response_deserializer=gpio__pb2.SetGpioResponse.FromString,
         )
     self.BlinkGpio = channel.unary_unary(
-        '/Gpio/BlinkGpio',
+        '/GpioController.Gpio/BlinkGpio',
         request_serializer=gpio__pb2.BlinkGpioRequest.SerializeToString,
         response_deserializer=gpio__pb2.BlinkGpioResponse.FromString,
         )
@@ -76,5 +76,5 @@ def add_GpioServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'Gpio', rpc_method_handlers)
+      'GpioController.Gpio', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
