@@ -2,6 +2,7 @@
 // python -m grpc_tools.protoc -I ../ --python_out=./ --grpc_python_out=./ ../gpio.proto
 
 syntax = "proto3";
+package GpioController;
 
 enum GpioState {
     Off = 0;
